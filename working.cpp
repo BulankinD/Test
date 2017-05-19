@@ -21,10 +21,10 @@ public:
     private:
         T* value;
     public:
-        Iterator(T* value) {
+        Iterator(const T* value) {
             this->value = value;
         }
-        Iterator(T& value) {
+        Iterator(const T& value) {
             this->value = &value;
         }
         Iterator(const Iterator<C> &that) {
@@ -80,9 +80,9 @@ public:
     T pop_back();
     void push_front(const T &t);
     T pop_front();
-    T front() const;
-    T back() const;
-    T& operator[](const size_t index) const;
+    T front();
+    T back();
+    T& operator[](const size_t index);
     void clear();
     void insert(const size_t index, const T &value);
     void insert(const Vector<T>::Iterator<T> &index, const T &value);
@@ -158,7 +158,7 @@ T Vector<T>::pop_back() {
     return result;
 }
 template <typename T>
-T Vector<T>::back() const {
+T Vector<T>::back(){
     return this->values[this->size - 1];
 }
 template <typename T>
@@ -171,11 +171,11 @@ T Vector<T>::pop_front() {
     return result;
 }
 template <typename T>
-T Vector<T>::front() const {
+T Vector<T>::front() {
     return this->values[0];
 }
 template <typename T>
-T& Vector<T>::operator[](const size_t index) const {
+T& Vector<T>::operator[](const size_t index) {
     return this->values[index];
 }
 template <typename T>
